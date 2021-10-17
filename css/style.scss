@@ -1,0 +1,128 @@
+*, *:after, *:before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.space {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width: 100%;
+    height: 100vh;
+    background:#01070A url(../img/bg-space.png) repeat top center;
+
+    z-index: 0;
+}
+
+.scene {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent url(../img/bg-scene.png) repeat top center;
+    
+    z-index: 1;
+    
+    animation: blink-bg-stars 200s linear infinite;
+    
+    i { 
+        position: absolute;
+        top: -250px;
+        background: rgba(255, 255, 255, 0.5);
+        animation: stars linear infinite;
+    }
+
+    .rocket {
+        position: relative;
+
+        z-index: 9000;
+
+        animation: rocket 0.2s ease infinite;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 80px;
+            background: linear-gradient(#00D0FF 0%, #A39078 20%, #F37135 70%, transparent);
+        
+            border-bottom-left-radius: 50% 100%;
+            border-bottom-right-radius: 50% 100%;
+        
+            z-index: -1;
+        
+            animation: fire 0.2s ease infinite;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 100px;
+            background: linear-gradient(#00D0FF 0%, #A39078 25%, #F37135 85%, transparent);
+            filter: blur(20px);
+        
+            z-index: -1;
+        }
+
+        img {
+            width: 80px;
+        }
+
+    }
+}
+
+@keyframes stars {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(200vh);
+    }
+}
+
+@keyframes rocket {
+    0%,
+    100% {
+        transform: translateY(-2px);
+    }
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+@keyframes fire {
+    0%, 100% {
+        height: 80px;
+    }
+    50% {
+        height: 70px;
+    }
+}
+
+@keyframes blink-bg-stars {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -10000px 5000px;
+    }
+}
